@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="..\assets\img\pngegg.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <title>Multiplicación de matrices</title>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand text-bold">
+                <img src="..\assets\img\pngegg.png" alt="kids" width="50">
+                <span class="text-uppercase" style="font-family: cursive;">Multiplicación de matrices grandes</span>
+            </a>
+        </div>
+    </nav>
+
+    <p></p>
+
+    <div class="container bg-light rounded justify-content-center">
+
+        <table id="tt" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Algoritmos</th>
+                    <th scope="col">Hasta el caso 10: 1024x1024</th>
+                    <th scope="col">Promedio</th>
+                    <th scope="col">Suma tiempos</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+                    <td scope="row">1</td>
+                    <td>NaivStandard</td>
+                    <td><span id="tiempo10_NaivStandard"></span> ms</td>
+                    <td><span id="promedio_NaivStandard"></span> ms</td>
+                    <td><span id="suma_NaivStandard"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">2</td>
+                    <td>NaivOnArray</td>
+                    <td><span id="tiempo10_NaivOnArray"></span> ms</td>
+                    <td><span id="promedio_NaivOnArray"></span> ms</td>
+                    <td><span id="suma_NaivOnArray"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">3</td>
+                    <td>NaivKahan</td>
+                    <td><span id="tiempo10_NaivKahan"></span> ms</td>
+                    <td><span id="promedio_NaivKahan"></span> ms</td>
+                    <td><span id="suma_NaivKahan"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">4</td>
+                    <td>NaivLoopUnrollingTwo</td>
+                    <td><span id="tiempo10_NaivLoopUnrollingTwo"></span> ms</td>
+                    <td><span id="promedio_NaivLoopUnrollingTwo"></span> ms</td>
+                    <td><span id="suma_NaivLoopUnrollingTwo"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">5</td>
+                    <td>NaivLoopUnrollingThree</td>
+                    <td><span id="tiempo10_NaivLoopUnrollingThree"></span> ms</td>
+                    <td><span id="promedio_NaivLoopUnrollingThree"></span> ms</td>
+                    <td><span id="suma_NaivLoopUnrollingThree"></span> ms</td>
+                </tr>
+               <tr>
+                    <td scope="row">6</td>
+                    <td>NaivLoopUnrollingFour</td>
+                    <td><span id="tiempo10_NaivLoopUnrollingFour"></span> ms</td>
+                    <td><span id="promedio_NaivLoopUnrollingFour"></span> ms</td>
+                    <td><span id="suma_NaivLoopUnrollingFour"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">7</td>
+                    <td>WinogradOriginal</td>
+                    <td><span id="tiempo10_WinogradOriginal"></span> ms</td>
+                    <td><span id="promedio_WinogradOriginal"></span> ms</td>
+                    <td><span id="suma_WinogradOriginal"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">8</td>
+                    <td>WinogradScaled</td>
+                    <td><span id="tiempo10_WinogradScaled"></span> ms</td>
+                    <td><span id="promedio_WinogradScaled"></span> ms</td>
+                    <td><span id="suma_WinogradScaled_WinogradScaled"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">9</td>
+                    <td>StrassenNaiv</td>
+                    <td><span id="tiempo10_StrassenNaiv"></span> ms</td>
+                    <td><span id="promedio_StrassenNaiv"></span> ms</td>
+                    <td><span id="suma_StrassenNaiv"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">10</td>
+                    <td>StrassenWinograd</td>
+                    <td><span id="tiempo10_StrassenWinograd"></span> ms</td>
+                    <td><span id="promedio_StrassenWinograd"></span> ms</td>
+                    <td><span id="suma_StrassenWinograd"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">11</td>
+                    <td>III.3 Sequential block</td>
+                    <td><span id="tiempo10_III3Sequentialblock"></span> ms</td>
+                    <td><span id="promedio_III3Sequentialblock"></span> ms</td>
+                    <td><span id="suma_III3Sequentialblock"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">12</td>
+                    <td>III.4 Parallel Block</td>
+                    <td><span id="tiempo10_III4ParallelBlock"></span> ms</td>
+                    <td><span id="promedio_III4ParallelBlock"></span> ms</td>
+                    <td><span id="suma_III4ParallelBlock"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">13</td>
+                    <td>IV.3 Sequential block</td>
+                    <td><span id="tiempo10_IV3SequentialBlock"></span> ms</td>
+                    <td><span id="promedio_IV3SequentialBlock"></span> ms</td>
+                    <td><span id="suma_IV3SequentialBlock"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">14</td>
+                    <td>IV.4 Parallel Block</td>
+                    <td><span id="tiempo10_IV4ParallelBlock"></span> ms</td>
+                    <td><span id="promedio_IV4ParallelBlock"></span> ms</td>
+                    <td><span id="suma_IV4ParallelBlock"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">15</td>
+                    <td>V.3 Sequential block</td>
+                    <td><span id="tiempo10_V3Sequentialblock"></span> ms</td>
+                    <td><span id="promedio_V3Sequentialblock"></span> ms</td>
+                    <td><span id="suma_V3Sequentialblock"></span> ms</td>
+                </tr>
+                <tr>
+                    <td scope="row">16</td>
+                    <td>IV.4 Parallel Block</td>
+                    <td><span id="tiempo10_V4ParallelBlock"></span> ms</td>
+                    <td><span id="promedio_V4ParallelBlock"></span> ms</td>
+                    <td><span id="suma_V4ParallelBlock"></span> ms</td>
+                </tr>
+                
+                <tr>
+                   
+                <tr>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <canvas id="miDiagrama"></canvas>
+    <canvas id="grafico" ></canvas>
+
+    <div class="container bg-light rounded justify-content-center">
+
+        <table id="tt" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Algoritmos</th>
+                    <th scope="col">Rango</th>
+                    <th scope="col">Media</th>
+                    <th scope="col">Desviación estándar</th>
+                    <th scope="col">Varianza</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr>
+                    <td scope="row">1</td>
+                    <td>NaivStandard</td>
+                    <td><span id="rango_NaivStandar"></span> ms</td>
+                    <td><span id="media_NaivStandar"></span> ms</td>
+                    <td><span id="desviacion_NaivStandar"></span> ms</td>
+                    <td><span id="varianza_NaivStandar"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">2</td>
+                    <td>NaivOnArray</td>
+                    <td><span id="rango_NaivOnArray"></span> ms</td>
+                    <td><span id="media_NaivOnArray"></span> ms</td>
+                    <td><span id="desviacion_NaivOnArray"></span> ms</td>
+                    <td><span id="varianza_NaivOnArray"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">3</td>
+                    <td>NaivKahan</td>
+                    <td><span id="rango_NaivKahan"></span> ms</td>
+                    <td><span id="media_NaivKahan"></span> ms</td>
+                    <td><span id="desviacion_NaivKahan"></span> ms</td>
+                    <td><span id="varianza_NaivKahan"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">4</td>
+                    <td>NaivLoopUnrollingTwo</td>
+                    <td><span id="rango_NaivLoopUnrollingTwo"></span> ms</td>
+                    <td><span id="media_NaivLoopUnrollingTwo"></span> ms</td>
+                    <td><span id="desviacion_NaivLoopUnrollingTwo"></span> ms</td>
+                    <td><span id="varianza_NaivLoopUnrollingTwo"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">5</td>
+                    <td>NaivLoopUnrollingThree</td>
+                    <td><span id="rango_NaivLoopUnrollingThree"></span> ms</td>
+                    <td><span id="media_NaivLoopUnrollingThree"></span> ms</td>
+                    <td><span id="desviacion_NaivLoopUnrollingThree"></span> ms</td>
+                    <td><span id="varianza_NaivLoopUnrollingThree"></span> ms^2</td>
+                </tr>
+               <tr>
+                    <td scope="row">6</td>
+                    <td>NaivLoopUnrollingFour</td>
+                    <td><span id="rango_NaivLoopUnrollingFour"></span> ms</td>
+                    <td><span id="media_NaivLoopUnrollingFour"></span> ms</td>
+                    <td><span id="desviacion_NaivLoopUnrollingFour"></span> ms</td>
+                    <td><span id="varianza_NaivLoopUnrollingFour"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">7</td>
+                    <td>WinogradOriginal</td>
+                    <td><span id="rango_WinogradOriginal"></span> ms</td>
+                    <td><span id="media_WinogradOriginal"></span> ms</td>
+                    <td><span id="desviacion_WinogradOriginal"></span> ms</td>
+                    <td><span id="varianza_WinogradOriginal"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">8</td>
+                    <td>WinogradScaled</td>
+                    <td><span id="rango_WinogradScaled"></span> ms</td>
+                    <td><span id="media_WinogradScaled"></span> ms</td>
+                    <td><span id="desviacion_WinogradScaled"></span> ms</td>
+                    <td><span id="varianza_WinogradScaled"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">9</td>
+                    <td>StrassenNaiv</td>
+                    <td><span id="rango_StrassenNaiv"></span> ms</td>
+                    <td><span id="media_StrassenNaiv"></span> ms</td>
+                    <td><span id="desviacion_StrassenNaiv"></span> ms</td>
+                    <td><span id="varianza_StrassenNaiv"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">10</td>
+                    <td>StrassenWinograd</td>
+                    <td><span id="rango_StrassenWinograd"></span> ms</td>
+                    <td><span id="media_StrassenWinograd"></span> ms</td>
+                    <td><span id="desviacion_StrassenWinograd"></span> ms</td>
+                    <td><span id="varianza_StrassenWinograd"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">11</td>
+                    <td>III.3 Sequential block</td>
+                    <td><span id="rango_III3Sequentialblock"></span> ms</td>
+                    <td><span id="media_III3Sequentialblock"></span> ms</td>
+                    <td><span id="desviacion_III3Sequentialblock"></span> ms</td>
+                    <td><span id="varianza_III3Sequentialblock"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">12</td>
+                    <td>III.4 Parallel Block</td>
+                    <td><span id="rango_III4ParallelBlock"></span> ms</td>
+                    <td><span id="media_III4ParallelBlock"></span> ms</td>
+                    <td><span id="desviacion_III4ParallelBlock"></span> ms</td>
+                    <td><span id="varianza_III4ParallelBlock"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">13</td>
+                    <td>IV.3 Sequential block</td>
+                    <td><span id="rango_IV3SequentialBlock"></span> ms</td>
+                    <td><span id="media_IV3SequentialBlock"></span> ms</td>
+                    <td><span id="desviacion_IV3SequentialBlock"></span> ms</td>
+                    <td><span id="varianza_IV3SequentialBlock"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">14</td>
+                    <td>IV.4 Parallel Block</td>
+                    <td><span id="rango_IV4ParallelBlock"></span> ms</td>
+                    <td><span id="media_IV4ParallelBlock"></span> ms</td>
+                    <td><span id="desviacion_IV4ParallelBlock"></span> ms</td>
+                    <td><span id="varianza_IV4ParallelBlock"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">15</td>
+                    <td>V.3 Sequential block</td>
+                    <td><span id="rango_V3Sequentialblock"></span> ms</td>
+                    <td><span id="media_V3Sequentialblock"></span> ms</td>
+                    <td><span id="desviacion_V3Sequentialblock"></span> ms</td>
+                    <td><span id="varianza_V3Sequentialblock"></span> ms^2</td>
+                </tr>
+                <tr>
+                    <td scope="row">16</td>
+                    <td>IV.4 Parallel Block</td>
+                    <td><span id="rango_V4ParallelBlock"></span> ms</td>
+                    <td><span id="media_V4ParallelBlock"></span> ms</td>
+                    <td><span id="desviacion_V4ParallelBlock"></span> ms</td>
+                    <td><span id="varianza_V4ParallelBlock"></span> ms^2</td>
+                </tr>
+                
+                <tr>
+                   
+                <tr>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    
+    <!-- Agrega un elemento canvas en tu HTML donde se mostrará el gráfico -->
+    
+
+    
+    <canvas id="myChart"></canvas>
+
+
+    <script src="js/NaivStandard.js" ></script>
+    <script src="js/NaivOnArray.js" ></script>
+    <script src="js/NaivKahan.js" ></script>
+    <script src="js/NaivLoopUnrollingTwo.js" ></script>
+    <script src="js/NaivLoopUnrollingThree.js" ></script>
+    <script src="js/NaivLoopUnrollingFour.js" ></script>
+    <script src="js/WinogradOriginal.js" ></script>
+    <script src="js/WinogradScaled.js" ></script>
+    <script src="js/StrassenNaiv.js" ></script>
+    <script src="js/StrassenWinograd.js" ></script>
+    
+    <script src="js/III3Sequentialblock.js" ></script>
+    <script src="js/III4ParallelBlock.js" ></script>
+    <script src="worker.js" ></script>
+    <script src="js/IV3SequentialBlock.js" ></script>
+    <script src="js/IV4ParallelBlock.js" ></script>
+    <script src="js/V3Sequentialblock.js" ></script>
+    <script src="js/V4ParallelBlock.js" ></script>
+    
+
+
+    <script src="js/diagrama.js" ></script>
+    <script src="js/diagramaTiempos.js" ></script>
+    <script src="js/graficoLineas.js" ></script>
+    
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tt').DataTable();
+        });
+    </script>
+</body>
+
+</html>

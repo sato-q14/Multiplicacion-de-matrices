@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Algoritmo NaivKahan para multiplicar matrices</title>
+</head>
+<body>
+  <h1>Algoritmo NaivKahan para multiplicar matrices</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Tamaño de la matriz</th>
+        <th>Tiempo de ejecución (ms)</th>
+      </tr>
+    </thead>
+    <tbody id="results">
+    </tbody>
+  </table>
+
+  <script>
+    // Definir una función para multiplicar dos matrices utilizando el algoritmo NaivKahan
+    function NaivKahan(matrix1, matrix2) {
+      const rows1 = matrix1.length;
+      const cols1 = matrix1[0].length;
+      const cols2 = matrix2[0].length;
+      const result = [];
+
+      for (let i = 0; i < rows1; i++) {
+        result[i] = [];
+        for (let j = 0; j < cols2; j++) {
+          let sum = 0;
+          let c = 0;
+          for (let k = 0; k < cols1; k++) {
+            const y = matrix1[i][k] * matrix2[k][j] - c;
+            const t = sum + y;
+            c = (t - sum) - y;
+            sum = t;
+          }
+          result[i][j] = sum;
+        }
+      }
+
+      return result;
+    }
+
+    // Definir una función para generar una matriz aleatoria de tamaño n x n
+    function generateRandomMatrix(n) {
+      const matrix = [];
+      for (let i = 0; i < n; i++) {
+        matrix[i] = [];
+        for (let j = 0; j < n; j++) {
+          matrix[i][j] = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+        }
+      }
+      return matrix;
+    }
+
+    // Definir una función para medir el tiempo de ejecución del algoritmo NaivKahan con una matriz de tamaño n x n
+    function measureTimeNaivKahan(n) {
+  const matrix1 = generateRandomMatrix(n);
+  const matrix2 = generateRandomMatrix(n);
+
+  const startTime = performance.now();
+  const result = NaivKahan(matrix1, matrix2);
+  const endTime = performance.now();
+  const elapsedTime = endTime - startTime;
+
+  const tableRow = document.createElement('tr');
+  const tableCell1 = document.createElement('td');
+  const tableCell2 = document.createElement('td');
+  tableCell1.textContent = `${n} x ${n}`;
+  tableCell2.textContent = `${elapsedTime.toFixed(2)} ms`;
+  tableRow.appendChild(tableCell1);
+  tableRow.appendChild(tableCell2);
+  document.getElementById('results').appendChild(tableRow);
+
+  return elapsedTime;
+}
+
+
+    // Generar 12 casos de prueba con matrices de tamaño n x n, siendo n factor de 2^n
+    const sizes = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096];
+let totalElapsedTime = 0;
+for (const size of sizes) {
+  const elapsedTime = measureTimeNaivKahan(size);
+  totalElapsedTime += elapsedTime;
+}
+
+const averageElapsedTime = totalElapsedTime / sizes.length;
+console.log(`Promedio de tiempo de ejecución: ${averageElapsedTime.toFixed(2)} ms`);
+</script>
+</body>
+</html>
