@@ -1,3 +1,5 @@
+import { tiempos } from "./main.js";
+
 window.tiempo10_NaivLoopUnrollingFour;
 // Definir una función para generar matrices aleatorias de tamaño n x n
 function generarMatriz(n) {
@@ -56,7 +58,7 @@ function generarMatriz(n) {
   
   // Ejecutar la función para generar 12 casos de prueba con matrices de tamaño n x n, donde n es factor de 2^n
   let tiempo10_NaivLoopUnrollingFour = [];
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= tiempos; i++) {
     let n = Math.pow(2, i);
     tiempo10_NaivLoopUnrollingFour.push(ejecutarNaivLoopUnrollingFour(n));
   }

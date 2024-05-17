@@ -1,3 +1,4 @@
+import { tiempos } from "./main.js";
 // Definir una función para multiplicar dos matrices utilizando el algoritmo V.3 Sequential block
 function multiplicarMatricesV3Sequentialblock(matriz1, matriz2, blockSize) {
     let n = matriz1.length;
@@ -56,7 +57,7 @@ function multiplicarMatricesV3SequentialBlock(matriz1, matriz2, blockSize) {
   
   // Ejecutar la función para generar 12 casos de prueba con matrices de tamaño n x n, donde n es factor de 2^n
   let tiempo10_V3Sequentialblock = [];
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= tiempos; i++) {
     let n = Math.pow(2, i);
     tiempo10_V3Sequentialblock.push(ejecutarV3Sequentialblock(n));
   }

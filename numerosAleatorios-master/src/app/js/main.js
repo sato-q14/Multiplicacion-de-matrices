@@ -1,6 +1,2 @@
-var tiempos;
 
-
-
-
-
+export const tiempos = 8;
