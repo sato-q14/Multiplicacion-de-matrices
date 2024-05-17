@@ -7,12 +7,8 @@ let ctx = document.getElementById('myChart').getContext('2d');
 let tamaños = [2, 4, 8, 16, 32, 64, 128, 256, 512];
 
 
-
-let tiemposNaivStandard = tamaños.map(n => ejecutarNaivStandard(n));
 let tiemposNaivOnArray = tamaños.map(n => ejecutarNaivOnArray(n));
-let tiemposNaivKahan = tamaños.map(n => ejecutarNaivKahan(n));
 let tiemposNaivLoopUnrollingTwo = tamaños.map(n => ejecutarNaivLoopUnrollingTwo(n));
-let tiemposNaivLoopUnrollingThree = tamaños.map(n => ejecutarNaivLoopUnrollingThree(n));
 let tiemposNaivLoopUnrollingFour = tamaños.map(n => ejecutarNaivLoopUnrollingFour(n));
 let tiemposWinogradOriginal = tamaños.map(n => ejecutarWinogradOriginal(n));
 let tiemposWinogradScaled = tamaños.map(n => ejecutarWinogradScaled(n));
@@ -20,6 +16,7 @@ let tiemposStrassenNaiv = tamaños.map(n => ejecutarStrassenNaiv(n));
 let tiemposStrassenWinograd = tamaños.map(n => ejecutarStrassenWinograd(n));
 let tiemposIII3Sequentialblock = tamaños.map(n => ejecutarIII3Sequentialblock(n));
 let tiemposIII4ParallelBlock = tamaños.map(n => ejecutarIII4ParallelBlock(n));
+let tiemposIII5EnhancedParallelBlock = tamaños.map(n => ejecutarIII5EnhancedParallelBlock(n));
 let tiemposIV4ParallelBlock = tamaños.map(n => ejecutarIV4ParallelBlock(n));
 let tiemposIV3SequentialBlock = tamaños.map(n => ejecutarIV3SequentialBlock(n));
 let tiemposV3Sequentialblock = tamaños.map(n => ejecutarV3Sequentialblock(n));
@@ -31,12 +28,6 @@ let tiemposV4ParallelBlock = tamaños.map(n => ejecutarV4ParallelBlock(n));
     data: {
         labels: tamaños,  // Etiquetas del eje X (tamaños de matriz)
         datasets: [{
-            label: 'NaivStandard',  // Etiqueta de la línea
-            data: tiemposNaivStandard,  // Datos de la línea
-            backgroundColor: 'rgba(255, 206, 86, 0.2)',
-            borderColor: 'rgba(255, 206, 86, 1)',
-            borderWidth: 1  // Ancho de la línea
-        }, {
             label: 'NaivOnArray',  // Etiqueta de la línea
             data: tiemposNaivOnArray,  // Datos de la línea
             backgroundColor: 'rgba(54, 162, 235, 0.2)',  // Color de fondo de la línea
@@ -44,24 +35,10 @@ let tiemposV4ParallelBlock = tamaños.map(n => ejecutarV4ParallelBlock(n));
             borderWidth: 1  // Ancho de la línea
             
         }, {
-            label: 'NaivKahan',  // Etiqueta de la línea
-            data: tiemposNaivKahan,  // Datos de la línea
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-borderColor: 'rgba(75, 192, 192, 1)', // Color de la línea
-            borderWidth: 1  // Ancho de la línea
-            
-        }, {
             label: 'NaivLoopUnrollingTwo',  // Etiqueta de la línea
             data: tiemposNaivLoopUnrollingTwo,  // Datos de la línea
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
 borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1  // Ancho de la línea
-            
-        }, {
-            label: 'NaivLoopUnrollingThree',  // Etiqueta de la línea
-            data: tiemposNaivLoopUnrollingThree,  // Datos de la línea
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-borderColor: 'rgba(54, 162, 235, 1)',
             borderWidth: 1  // Ancho de la línea
             
         }, {
@@ -111,6 +88,13 @@ borderColor: 'rgba(0, 0, 255, 1)',
             data: tiemposIII4ParallelBlock,  // Datos de la línea
             backgroundColor: 'rgba(128, 128, 128, 0.2)',
             borderColor: 'rgba(128, 128, 128, 1)',
+            borderWidth: 1  // Ancho de la línea
+            
+        },{
+            label: 'III5EnhancedParallelBlock',  // Etiqueta de la línea
+            data: tiemposIII5EnhancedParallelBlock,  // Datos de la línea
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1  // Ancho de la línea
             
         }, {

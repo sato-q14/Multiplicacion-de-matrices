@@ -3,11 +3,8 @@ let miDiagrama = document.getElementById('miDiagrama').getContext('2d');
 
 // Crear un arreglo con los promedios de ejecución de ambos algoritmos
 let promedios = [
-  { algoritmo: 'NaivStandard', promedio: promedio_NaivStandard },
   { algoritmo: 'NaivOnArray', promedio: promedio_NaivOnArray },
-  { algoritmo: 'NaivKahan', promedio: promedio_NaivOnArray },
   { algoritmo: 'NaivLoopUnrollingTwo', promedio: promedio_NaivLoopUnrollingTwo },
-  { algoritmo: 'NaivLoopUnrollingThree', promedio: promedio_NaivLoopUnrollingThree },
   { algoritmo: 'NaivLoopUnrollingFour', promedio: promedio_NaivLoopUnrollingFour },
   { algoritmo: 'WinogradOriginal', promedio: promedio_WinogradOriginal },
   { algoritmo: 'WinogradScaled', promedio: promedio_WinogradScaled },
@@ -15,6 +12,7 @@ let promedios = [
   { algoritmo: 'StrassenWinograd', promedio: promedio_StrassenWinograd },
   { algoritmo: 'III3Sequentialblock', promedio: promedio_III3Sequentialblock },
   { algoritmo: 'III4ParallelBlock ', promedio: promedio_III4ParallelBlock },
+  { algoritmo: 'III5EnhancedParallelBlock', promedio: promedio_5Paralelo },
   { algoritmo: 'IV3SequentialBlock ', promedio: promedio_IV3SequentialBlock },
   { algoritmo: 'IV4ParallelBlock ', promedio: promedio_IV4ParallelBlock },
   { algoritmo: 'V3Sequentialblock ', promedio: promedio_V3Sequentialblock },

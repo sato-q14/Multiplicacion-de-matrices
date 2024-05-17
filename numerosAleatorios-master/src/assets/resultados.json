@@ -1,0 +1,61 @@
+{
+  "lenguaje": "Javascript",
+  "resultados": [
+    {
+      "algoritmo": "NaivOnArray",
+      "promedio": 21.25
+    },
+    {
+      "algoritmo": "NaivLoopUnrollingTwo",
+      "promedio": 11.75
+    },
+    {
+      "algoritmo": "NaivLoopUnrollingFour",
+      "promedio": 7.38
+    },
+    {
+      "algoritmo": "WinogradOriginal",
+      "promedio": 17.63
+    },
+    {
+      "algoritmo": "WinogradScaled",
+      "promedio": 14.38
+    },
+    {
+      "algoritmo": "StrassenNaiv",
+      "promedio": 225.5
+    },
+    {
+      "algoritmo": "StrassenWinograd",
+      "promedio": 216.38
+    },
+    {
+      "algoritmo": "III3Sequentialblock",
+      "promedio": 19.13
+    },
+    {
+      "algoritmo": "III4ParallelBlock",
+      "promedio": 12.25
+    },
+    {
+      "algoritmo": "5Paralelo",
+      "promedio": 14
+    },
+    {
+      "algoritmo": "IV3SequentialBlock",
+      "promedio": 61.38
+    },
+    {
+      "algoritmo": "IV4ParallelBlock",
+      "promedio": 12.75
+    },
+    {
+      "algoritmo": "V3Sequentialblock",
+      "promedio": null
+    },
+    {
+      "algoritmo": "V4ParallelBlock",
+      "promedio": 14.13
+    }
+  ]
+}

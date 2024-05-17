@@ -3,18 +3,16 @@ let grafico = document.getElementById('grafico').getContext('2d');
 
   // Crea los arrays para almacenar los tiempos de ejecución de cada algoritmo
   let tiempoEjecucion = [
-    { algoritmo: 'NaivStandard', tiempo: suma_NaivStandard },
     { algoritmo: 'NaivOnArray', tiempo: suma_NaivOnArray },
-    { algoritmo: 'NaivKahan', tiempo: suma_NaivKahan },
     { algoritmo: 'NaivLoopUnrollingTwo', tiempo: suma_NaivLoopUnrollingTwo },
-    { algoritmo: 'NaivLoopUnrollingThree', tiempo: suma_NaivLoopUnrollingThree },
     { algoritmo: 'NaivLoopUnrollingFour', tiempo: suma_NaivLoopUnrollingFour },
     { algoritmo: 'WinogradOriginal', tiempo: suma_WinogradOriginal },
-    { algoritmo: 'WinogradScaled', tiempo: suma_WinogradScaled },
+    { algoritmo: 'WinogradScaled', tiempo: suma_WinogradScaled_WinogradScaled },
     { algoritmo: 'StrassenNaiv', tiempo: suma_StrassenNaiv },
     { algoritmo: 'StrassenWinograd', tiempo: suma_StrassenWinograd },
     { algoritmo: 'III3Sequentialblock', tiempo: suma_III3Sequentialblock },
-    { algoritmo: 'III4ParallelBlock ', tiempo: suma_III4ParallelBlock },
+    { algoritmo: 'III4ParallelBlock', tiempo: suma_III4ParallelBlock },
+    { algoritmo: 'III5EnhancedParallelBlock', tiempo: suma_5Paralelo },
     { algoritmo: 'IV3SequentialBlock ', tiempo: suma_IV3SequentialBlock },
     { algoritmo: 'IV4ParallelBlock ', tiempo: suma_IV4ParallelBlock },
     { algoritmo: 'V3Sequentialblock ', tiempo: suma_V3Sequentialblock },

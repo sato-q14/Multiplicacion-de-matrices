@@ -1,50 +1,54 @@
 import { tiempos } from "./main.js";
 // Definir una función para multiplicar dos matrices utilizando el algoritmo IV.3 Sequential block
-function multiplicarMatricesIV3SequentialBlock(matriz1, matriz2, blockSize) {
-    let n = matriz1.length;
-    let resultado = [];
-    for (let i = 0; i < n; i++) {
-      resultado[i] = [];
-      for (let j = 0; j < n; j++) {
-        resultado[i][j] = 0;
-      }
+function generarMatriz(n) {
+  let matriz = [];
+  for (let i = 0; i < n; i++) {
+    matriz[i] = [];
+    for (let j = 0; j < n; j++) {
+      matriz[i][j] = Math.floor(Math.random() * 9000 + 1000); // Generar número aleatorio de 4 dígitos
     }
+  }
+  return matriz;
+}
 
-    // Definir una función para multiplicar dos matrices utilizando el algoritmo
-    for (let i = 0; i < n; i += blockSize) {
-      for (let j = 0; j < n; j += blockSize) {
-        for (let k = 0; k < n; k += blockSize) {
-          // Multiplicar bloques de la matriz
-          for (let i2 = i; i2 < Math.min(i + blockSize, n); i2++) {
-            for (let j2 = j; j2 < Math.min(j + blockSize, n); j2++) {
-              let suma1 = 0;
-              let suma2 = 0;
-              let suma3 = 0;
-              let suma4 = 0;
-              for (let k2 = k; k2 < Math.min(k + blockSize, n); k2++) {
-                suma1 += matriz1[i2][k2] * matriz2[k2][j2];
-                suma2 += matriz1[i2][k2] * matriz2[k2][j2 + 1];
-                suma3 += matriz1[i2][k2] * matriz2[k2][j2 + 2];
-                suma4 += matriz1[i2][k2] * matriz2[k2][j2 + 3];
-              }
-              resultado[i2][j2] += suma1;
-              resultado[i2][j2 + 1] += suma2;
-              resultado[i2][j2 + 2] += suma3;
-              resultado[i2][j2 + 3] += suma4;
+function multiplicarMatricesSequentialBlock(matriz1, matriz2, blockSize, n){
+  // Definir una función para multiplicar dos matrices utilizando el algoritmo
+  let resultado = generarMatriz(n); // Initialize resultado matrix
+  for (let i = 0; i < n; i += blockSize) {
+    for (let j = 0; j < n; j += blockSize) {
+      for (let k = 0; k < n; k += blockSize) {
+        // Multiplicar bloques de la matriz
+        for (let i2 = i; i2 < Math.min(i + blockSize, n); i2++) {
+          for (let j2 = j; j2 < Math.min(j + blockSize, n); j2++) {
+            let suma1 = 0;
+            let suma2 = 0;
+            let suma3 = 0;
+            let suma4 = 0;
+            for (let k2 = k; k2 < Math.min(k + blockSize, n); k2++) {
+              suma1 += matriz1[i2][k2] * matriz2[k2][j2];
+              suma2 += matriz1[i2][k2] * matriz2[k2][j2 + 1];
+              suma3 += matriz1[i2][k2] * matriz2[k2][j2 + 2];
+              suma4 += matriz1[i2][k2] * matriz2[k2][j2 + 3];
             }
+            resultado[i2][j2] += suma1;
+            resultado[i2][j2 + 1] += suma2;
+            resultado[i2][j2 + 2] += suma3;
+            resultado[i2][j2 + 3] += suma4;
           }
         }
       }
     }
-    return resultado;
   }
+  return resultado;
+}
+
 
   //Definir una función para ejecutar el algoritmo IV3SequentialBlock con un tamaño de matriz dado y medir el tiempo de ejecución
   function ejecutarIV3SequentialBlock(n) {
     let matriz1 = generarMatriz(n);
     let matriz2 = generarMatriz(n);
     let inicio = performance.now();
-    let resultado = multiplicarMatricesSequentialBlock(matriz1, matriz2, 32);
+    let resultado = multiplicarMatricesSequentialBlock(matriz1, matriz2, 32, n);
     let fin = performance.now();
     let tiempoEjecucion = fin - inicio;
     console.log(`Tamaño de matrices: ${n}x${n}, tiempo de ejecución: ${tiempoEjecucion} ms`);

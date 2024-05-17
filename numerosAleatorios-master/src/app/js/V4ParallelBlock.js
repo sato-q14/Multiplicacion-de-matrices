@@ -1,15 +1,15 @@
 import { tiempos } from "./main.js";
 
 // Definir una función para multiplicar dos matrices utilizando el algoritmo IV.3 Sequential block
-function multiplicarMatricesV4ParallelBlock(matriz1, matriz2, blockSize) {
-    let n = matriz1.length;
-    let resultado = [];
-    for (let i = 0; i < n; i++) {
-      resultado[i] = [];
-      for (let j = 0; j < n; j++) {
-        resultado[i][j] = 0;
-      }
+function generarMatriz(n) {
+  let matriz = [];
+  for (let i = 0; i < n; i++) {
+    matriz[i] = [];
+    for (let j = 0; j < n; j++) {
+      matriz[i][j] = Math.floor(Math.random() * 9000 + 1000); // Generar número aleatorio de 4 dígitos
     }
+  }
+  return matriz;
 }
 
 // Definir una función para multiplicar dos matrices utilizando el algoritmo V.4 Parallel Block
